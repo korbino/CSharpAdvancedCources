@@ -1,0 +1,16 @@
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.exe.config
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.exe
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.pdb
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.csprojResolveAssemblyReference.cache
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.exe
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.pdb
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\inputFile.txt
+D:\_my_backup\Drop_Box\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\outputFile.txt
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.exe.config
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.exe
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.pdb
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\inputFile.txt
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\outputFile.txt
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.exe
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\bin\Debug\FileReaderWithThreads.pdb
+D:\Dropbox\Learning\C_sharp\CSharpAdvancedCourse\FileReaderWithThreads\FileReaderWithThreads\obj\Debug\FileReaderWithThreads.csprojResolveAssemblyReference.cache
