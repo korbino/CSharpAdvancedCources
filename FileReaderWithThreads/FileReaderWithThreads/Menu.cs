@@ -17,10 +17,10 @@ namespace FileReaderWithThreads
             while (!isExit)
             {
                 Console.WriteLine("1. Read data file.");
-                Console.WriteLine("2. Operate with 3 threads");
+                Console.WriteLine("2. Convert all chars to opposite case.");
                 Console.WriteLine("3. Write result to output file");
                 Console.WriteLine("4. Exit");
-                Console.WriteLine("\nChoose your destiny:");
+                Console.WriteLine("\nPleas edo your selection:");
                 string selection = Console.ReadLine();
 
                 switch (selection)
@@ -32,7 +32,7 @@ namespace FileReaderWithThreads
                         logic.RunOperationWithThreads();                       
                         break;
                     case "3":
-                        logic.WriteResultInOutputFile();
+                        logic.WriteResultToTheOutputFile();
                         break;
                     case "4":
                         Logger.INFO("Bye, bye....");

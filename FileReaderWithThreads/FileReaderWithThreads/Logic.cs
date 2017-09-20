@@ -9,31 +9,30 @@ using System.Threading.Tasks;
 namespace FileReaderWithThreads
 {
     public class Logic
-    {
-        Utils utils = new Utils();//in util present main methods to read and how to transform the text.
-        private int oneThirdNumber;             
+    {        
+        private int arraySplittingNumber;             
         private List<string> resultFromFirstThread = new List<string> ();
         private List<string> resultFromSecondThread = new List<string>();
-        private List<string> resultFromThirdThread = new List<string>();
-        private List<String> resultListFinal;
-        private const string OUTPUT_FILE = "outputFile.txt";        
+        private List<string> resultFromThirdThread = new List<string>();        
+        private string[] readedStringArray;
+        private string OUTPUT_FILE = "outputFile.txt";
+        private string INPUT_FILE = "inputFile.txt";
+        private StringBuilder strinBuilder = new StringBuilder();
+        private bool isFileWasAlreadyWritten;
 
-
-        public void ReadDataFromFile(){
-            utils.ReadDataFromFile();
-            oneThirdNumber = utils.GetNumberOfLinesFromReadedFile() / 3; //finding one third number divider
+        public void ReadDataFromFile(){            
+            readedStringArray = File.ReadAllLines(INPUT_FILE);
+            arraySplittingNumber = readedStringArray.Length / 3;
+            Logger.INFO("Data was readed from intput file");
         }
         
-        public void RunOperationWithThreads (){
-            //Celean operations:
-            File.Create(OUTPUT_FILE).Close();         
-          
+        public void RunOperationWithThreads (){                             
             //running 3 new threads for the operating with 1\3 file part each, and convert the case to inverse:
             Logger.INFO("Starting to inverse chars to opposit case.");
             
-            Thread firstThread = new Thread(() => utils.ChangeCaseOfStringLinesToOppositeWithOutputToFile(0, oneThirdNumber, ref resultFromFirstThread));
-            Thread secondThread = new Thread(() => utils.ChangeCaseOfStringLinesToOppositeWithOutputToFile(oneThirdNumber, oneThirdNumber * 2, ref resultFromSecondThread));
-            Thread thirdThread = new Thread(() => utils.ChangeCaseOfStringLinesToOppositeWithOutputToFile(oneThirdNumber * 2, utils.GetNumberOfLinesFromReadedFile(),ref resultFromThirdThread));            
+            Thread firstThread = new Thread(() => ChangeCaseOfStringLinesToOpposite(0, arraySplittingNumber, ref resultFromFirstThread));
+            Thread secondThread = new Thread(() => ChangeCaseOfStringLinesToOpposite(arraySplittingNumber, arraySplittingNumber * 2, ref resultFromSecondThread));
+            Thread thirdThread = new Thread(() => ChangeCaseOfStringLinesToOpposite(arraySplittingNumber * 2, readedStringArray.Length,ref resultFromThirdThread));            
 
             firstThread.Start();
             secondThread.Start();
@@ -46,20 +45,41 @@ namespace FileReaderWithThreads
 
             Logger.INFO("Inverse process completed!");
 
-            resultListFinal = new List<string>();//clean result
+            strinBuilder.
+                Append(String.Join("\n", resultFromFirstThread)).Append("\n").
+                Append(String.Join("\n", resultFromSecondThread)).Append("\n").
+                Append(String.Join("\n", resultFromThirdThread));            
+        }             
 
-            //concatinate all result lists to one.                                   
-            resultListFinal = resultListFinal.Concat(resultFromFirstThread).Concat(resultFromSecondThread).Concat(resultFromThirdThread).ToList();
-
-            //clean process:
-            resultFromFirstThread = new List<string>();
-            resultFromSecondThread = new List<string>();
-            resultFromThirdThread = new List<string>();         
+        public void WriteResultToTheOutputFile()
+        {             
+            if (!isFileWasAlreadyWritten)
+            {
+                Logger.INFO("Write process is started, please wait...");
+                File.WriteAllText(OUTPUT_FILE, strinBuilder.ToString());
+                Logger.INFO("Write process completed.");
+                isFileWasAlreadyWritten = true;
+            }
+            else
+            {
+                Logger.WARN("The output file was already written.");
+            }           
         }
+        
 
-        public void WriteResultInOutputFile()
-        {
-            utils.WriteResultToTheOutputFile(resultListFinal);
+        
+        
+        //PRIVATE section:
+        private void ChangeCaseOfStringLinesToOpposite(int min, int max, ref List<string> tmpList)
+        {            
+            //convert cases to opposite and save it to tmp array:
+            for (int i = min; i < max; i++)
+            {             
+                tmpList.Add((new string(
+                        readedStringArray[i].Select(c => char.IsLetter(c) ? (char.IsUpper(c) ?
+                                        char.ToLower(c) : char.ToUpper(c)) : c).ToArray())));
+                
+            }
         }
     }
 }
