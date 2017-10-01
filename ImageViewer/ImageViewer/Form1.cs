@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,11 @@ namespace ImageViewer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("test output");
+            //cleaning process
+            imageContainer = new ImageContainer();
+            listBox1.Items.Clear();
+            textBox1.Clear();
+
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Title = "Open Image";
@@ -48,7 +53,21 @@ namespace ImageViewer
                     //(?not clear for me?) Add the new control to its parent's controls collection
                     this.Controls.Add(pictureBox1);
                 }              
-            }           
+            } 
+         
+            //loading tags:
+            try 
+            {
+                foreach (string s in imageContainer.imageTagList)
+                {
+                    listBox1.Items.Add(s);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("EXCEPTION: loaded image was without tags");
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,6 +87,27 @@ namespace ImageViewer
                     bformatter.Serialize(stream, imageContainer);
                 }               
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(textBox1.Text);
+            imageContainer.imageTagList.Add(textBox1.Text);
+            textBox1.Clear();           
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //removing selected tags
+            listBox1.BeginUpdate();
+            ArrayList selectedItems = new ArrayList(listBox1.SelectedItems);
+
+            foreach (string tagToRemove in selectedItems)
+            {               
+                listBox1.Items.Remove(tagToRemove);
+                imageContainer.imageTagList.Remove(tagToRemove);              
+            }
+            listBox1.EndUpdate();
         }
     }
 } 

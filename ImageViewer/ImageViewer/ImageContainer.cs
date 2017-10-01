@@ -11,6 +11,6 @@ namespace ImageViewer
     class ImageContainer
     {
        public Bitmap image;
-       public List<string> imageTag = new List<string>();
+       public List<string> imageTagList = new List<string>();
     }
 }
