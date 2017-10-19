@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ImageViewer
 {
     public partial class Form1 : Form
     {
+        Controller controller = new Controller();
+
         ImageContainer imageContainer = new ImageContainer();
         public Form1()
         {
@@ -108,6 +112,69 @@ namespace ImageViewer
                 imageContainer.imageTagList.Remove(tagToRemove);              
             }
             listBox1.EndUpdate();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           string imageTitle = ShowDialog("Set image title", "Image Title");
+           controller.WriteToDB(imageTitle, SerializeToXml(imageContainer));            
+
+            // how to serialize\deserialized bitmap to\from xml: http://www.dotnetspider.com/resources/4759-XML-Serialization-C-Part-II-Images.aspx
+            
+        }
+
+        public string SerializeToXml<T>(T value)
+        {
+            StringWriter writer = new StringWriter();
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            serializer.Serialize(writer, value);
+            return writer.ToString();            
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            List<string> listOfTitles = controller.GetListOfImagesFromDB();
+            foreach (string s in listOfTitles)
+            {
+                listBox2.Items.Add(s);
+            }
+
+        }
+
+
+
+
+
+        public static string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 500,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
 } 

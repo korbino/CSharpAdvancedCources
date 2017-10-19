@@ -1,4 +1,16 @@
-﻿using System;
+﻿//TODO:
+/*[+] Add DB to project
+ *[-] DB should be in normal form
+ *[+] Save image with tags to the DB (Ado.net)
+ *[-] Load image from DB
+ *[-] Tags should be normalized
+ *[-] Apply MVC pathern to the project
+ *[-] Add interface for the View
+ *[-] Separate all moduls for the DLLs
+ 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
