@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace ImageViewer
@@ -131,6 +132,18 @@ namespace ImageViewer
             return writer.ToString();            
         }
 
+        public  ImageContainer DeseializeFromXmlToObject (string value)
+        {
+
+            ImageContainer objectToOut = new ImageContainer();
+            XmlSerializer deserializer = new XmlSerializer(typeof(ImageContainer));
+            StringReader sReader = new StringReader(value);
+            XmlReader xmlReader = XmlReader.Create(sReader);            
+            objectToOut = (ImageContainer)deserializer.Deserialize(txtReader);
+
+            return objectToOut;
+        }
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -138,11 +151,49 @@ namespace ImageViewer
 
         private void button6_Click(object sender, EventArgs e)
         {
+            string imageSelection = null;
+            string stringLoadedFromDBImage = null;
 
-        }
+            try
+            {
+                imageSelection = listBox2.SelectedItem.ToString();
+            }
+            catch (System.NullReferenceException nullRefEx)
+            {
+                Console.WriteLine("DEBUG: " + nullRefEx.Message);
+            }            
+
+            if (imageSelection == null)
+            {
+                MessageBox.Show("Please choose image to load from DB");
+            }
+            else
+            {
+               stringLoadedFromDBImage = controller.GetImageFromDB(imageSelection);               
+               imageContainer = DeseializeFromXmlToObject(stringLoadedFromDBImage);
+               pictureBox1.Image = (Bitmap)imageContainer.image;
+
+
+               //loading tags:
+               try
+               {
+                   foreach (string s in imageContainer.imageTagList)
+                   {
+                       listBox1.Items.Add(s);
+                   }
+               }
+               catch (NullReferenceException ex)
+               {
+                   Console.WriteLine("EXCEPTION: loaded image was without tags");
+               }
+            }                       
+        }        
 
         private void button5_Click_1(object sender, EventArgs e)
         {
+            //cleaning process            
+            listBox2.Items.Clear();            
+
             List<string> listOfTitles = controller.GetListOfImagesFromDB();
             foreach (string s in listOfTitles)
             {

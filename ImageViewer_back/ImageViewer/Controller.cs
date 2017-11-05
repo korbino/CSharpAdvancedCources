@@ -43,6 +43,36 @@ namespace ImageViewer
             return listOfImageTitle;
         }
 
+        //TODO:
+        public string GetImageFromDB(string imageTitle)
+        {
+            string result = null;            
+            string query = "select Image from TestDB.dbo.testTable where ImageTitle like '"+ imageTitle +"';";
+
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {                    
+                    result = sqlDataReader.GetString(0);
+                }                                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("DEBUG: {0} ", e.Message);
+            }
+            finally
+            {
+                sqlDataReader.Close();
+                sqlConnection.Close();
+            }
+
+            return result;
+        }
+
         //TODO
         public void WriteToDB(string imageTitle, string image)
         {

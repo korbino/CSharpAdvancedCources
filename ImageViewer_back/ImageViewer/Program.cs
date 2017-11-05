@@ -7,6 +7,7 @@
  *[-] Apply MVC pathern to the project
  *[-] Add interface for the View
  *[-] Separate all moduls for the DLLs
+ *[-] add restriction for same name of image
  
  */
 

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageViewer", "ImageViewer\ImageViewer.csproj", "{0362BE72-45D3-4743-87A5-45F4504868BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\Model\Model\Model.csproj", "{BCB73383-FB95-4E1D-BDD9-A594798C1116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "..\Controller\Controller\Controller.csproj", "{FCDB481D-D21B-49B8-923E-D40151C54A31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0362BE72-45D3-4743-87A5-45F4504868BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0362BE72-45D3-4743-87A5-45F4504868BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0362BE72-45D3-4743-87A5-45F4504868BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0362BE72-45D3-4743-87A5-45F4504868BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB73383-FB95-4E1D-BDD9-A594798C1116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB73383-FB95-4E1D-BDD9-A594798C1116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB73383-FB95-4E1D-BDD9-A594798C1116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB73383-FB95-4E1D-BDD9-A594798C1116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCDB481D-D21B-49B8-923E-D40151C54A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDB481D-D21B-49B8-923E-D40151C54A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDB481D-D21B-49B8-923E-D40151C54A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDB481D-D21B-49B8-923E-D40151C54A31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
